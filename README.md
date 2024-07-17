@@ -57,3 +57,5 @@ This is a simple blog application built with FastAPI and MongoDB Atlas. It allow
 2. Open your browser and go to `http://127.0.0.1:8000/docs` to access the interactive API documentation.
 
 
+## Example Backend Funcitonality
+![Alt text](fastapi_backend.png)
