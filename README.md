@@ -56,18 +56,4 @@ This is a simple blog application built with FastAPI and MongoDB Atlas. It allow
 
 2. Open your browser and go to `http://127.0.0.1:8000/docs` to access the interactive API documentation.
 
-## Project Structure
 
-### `main.py`
-
-```python
-from fastapi import FastAPI
-from routes.endpoints import entry_root
-from routes.blog_routes import blog_root
-
-# Initialize the FastAPI application
-app = FastAPI()
-
-# Include the routers for different endpoints
-app.include_router(entry_root)
-app.include_router(blog_root)
