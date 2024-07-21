@@ -1,13 +1,20 @@
 
 from pymongo.mongo_client import MongoClient
 import os
+from dotenv import load_dotenv, dotenv_values
 
 # Create a new client and connect to the server
-MONGODB_URL = "mongodb+srv://bengisla123:6KUJ4nf7mKNUowBZ@cluster0.voqjoar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+load_dotenv()
 
-# TODO: change url to env variable, debug os.getenv()
-# client = MongoClient(os.getenv("MONGODB_URL"))
-client = MongoClient(MONGODB_URL)
-db = client.blogAPI
-blog_collection = db["Blogs"]
+# Retrieve the MongoDB URL from environment variables
+mongodb_url = os.getenv("MONGODB_URL")
 
+# Initialize MongoDB client
+try:
+    client = MongoClient(mongodb_url)
+    # client.admin.command('ping')
+    db = client.blogAPI
+    blog_collection = db["Blogs"]
+    print("MongoDB connection successful.")
+except Exception as e:
+    print("Error connecting to MongoDB:", e)

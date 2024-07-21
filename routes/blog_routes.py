@@ -41,7 +41,7 @@ def all_blogs():
         dict: Response containing status and the list of all blog posts.
     """
     res = blog_collection.find()
-    decoded_data = DecodeBlogs(res)
+    decoded_data = decode_blogs(res)
     return {
         "status": "ok",
         "data": decoded_data
@@ -59,7 +59,7 @@ def get_blog(_id: str):
         dict: Response containing status and the blog post data.
     """
     res = blog_collection.find_one({"_id": ObjectId(_id)})
-    decoded_blog = DecodeBlog(res)
+    decoded_blog = decode_blog(res)
     return {
         "status": "ok",
         "data": decoded_blog
@@ -77,8 +77,7 @@ def update_blog(_id: str, doc: UpdateBlogModel):
     Returns:
         dict: Response containing status and message.
     """
-    req = dict(doc.model_dump(exclude_unset=True))
-    
+    req = doc.dict(exclude_unset=True)  # Use dict method to exclude unset fields
     blog_collection.find_one_and_update(
         {"_id": ObjectId(_id)},
         {"$set": req}
