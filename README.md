@@ -57,7 +57,7 @@ To stop the running container:
 
 ```sh
 docker stop blogapi-container
-    ```
+```
 
 
 ## Example Backend Funcitonality
