@@ -11,9 +11,8 @@ entry_root = APIRouter()
 # Endpoint
 @entry_root.get("/") # main route
 def apiRunning():
-    mongodb_url = os.getenv("MONGODB_URL")
     res = {
         "status" : "ok",
-        "message" : mongodb_url#"API is running"
+        "message" : f"""API is running with user: {os.getenv("MONGODB_USER")}"""
     }
     return res

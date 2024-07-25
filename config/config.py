@@ -7,7 +7,7 @@ from dotenv import load_dotenv, dotenv_values
 load_dotenv()
 
 # Retrieve the MongoDB URL from environment variables
-mongodb_url = os.getenv("MONGODB_URL")
+mongodb_url = f"""mongodb+srv://{os.getenv("MONGODB_USER")}:{os.getenv("MONGODB_SECRET")}@cluster0.voqjoar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"""
 
 # Initialize MongoDB client
 try:

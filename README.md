@@ -12,49 +12,52 @@ This is a simple blog application built with FastAPI and MongoDB Atlas. It allow
 
 ## Requirements
 
-- Python 3.8+
-- FastAPI
-- PyMongo
-- Uvicorn (ASGI server)
 - MongoDB Atlas account
+- Docker
 
 ## Installation
 
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/yourusername/fastapi-blog.git
-    cd fastapi-blog
+    git clone https://github.com/yourusername/blogapi.git
+    cd blogapi
     ```
 
-2. Create and activate a virtual environment:
+2. Ensure you have Docker installed and running on your machine.
+
+## Setup
+
+1. Create a `.env` file in the project root directory with your MongoDB Atlas connection string:
+
+    ```plaintext
+    MONGODB_USER=username
+    MONGODB_SECRET=password
+    ```
+
+## Building and Running the Docker Container
+
+1. Build the Docker image:
 
     ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    docker build -t blogapi .
     ```
 
-3. Install the dependencies:
+2. Run the Docker container:
 
     ```sh
-    pip install -r requirements.txt
+    docker run --env-file .env -d -p 8000:8000 --name blogapi-container blogapi
     ```
 
-4. Set up your MongoDB Atlas connection string in a `.env` file:
+3. Verify that the application is running by navigating to `http://127.0.0.1:8000` in your web browser.
 
-    ```env
-    MONGO_CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority
+## Stopping and Removing the Docker Container
+
+To stop the running container:
+
+```sh
+docker stop blogapi-container
     ```
-
-## Usage
-
-1. Run the FastAPI application:
-
-    ```sh
-    uvicorn main:app --reload
-    ```
-
-2. Open your browser and go to `http://127.0.0.1:8000/docs` to access the interactive API documentation.
 
 
 ## Example Backend Funcitonality
